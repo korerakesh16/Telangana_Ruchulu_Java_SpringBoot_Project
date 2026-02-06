@@ -35,17 +35,17 @@ The project allows users to browse food items, add them to a cart, place orders,
 
 ## 🗂️ Project Structure
 
-OnlineFoodOrdering
-│
-├── controller
-├── service
-├── repository
-├── entity
-├── dto
-├── config
-├── templates
-├── static
-└── application.properties
+-OnlineFoodOrdering
+-│
+-├── controller
+-├── service
+-├── repository
+-├── entity
+-├── dto
+-├── config
+-├── templates
+-├── static
+-└── application.properties
 
 
 
