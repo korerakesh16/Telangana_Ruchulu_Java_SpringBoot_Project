@@ -36,6 +36,7 @@ The project allows users to browse food items, add them to a cart, place orders,
 ## 🗂️ Project Structure
 
 ### OnlineFoodOrdering
+
 │
 ├── controller
 ├── service
@@ -48,8 +49,7 @@ The project allows users to browse food items, add them to a cart, place orders,
 └── application.properties
 
 
-
-
+---
 
 ## ⚙️ Setup & Installation
 
@@ -65,6 +65,8 @@ File → Import → Existing Maven Project
 
 Select the project folder
 
+---
+
 ### 🎯 Future Enhancements
 
 Payment Gateway Integration
@@ -76,5 +78,7 @@ Email & SMS Notifications
 Role-based authentication using Spring Security
 
 REST API version for mobile apps
+
+---
 
 ### 📸 Screenshots
