@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Details</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* NAVBAR */
+.custom-navbar{
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    padding:15px 0;
+}
+
+.nav-container{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+.nav-item{
+    font-size:18px;
+    font-weight:600;
+    color:#333;
+    text-decoration:none;
+    position:relative;
+    transition:0.3s;
+}
+
+.nav-item::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:3px;
+    background:#ff512f;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.nav-item:hover::after{ width:100%; }
+
+.nav-item:hover{
+    color:#ff512f;
+}
+
+/* PRODUCT CARD */
+.product-container{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    animation:fadeIn 1s;
+}
+
+/* PRODUCT IMAGE */
+.product-img{
+    height:320px;
+    width:320px;
+    border-radius:20px;
+    object-fit:cover;
+    transition:0.3s;
+}
+
+.product-img:hover{
+    transform:scale(1.05);
+}
+
+/* PRICE */
+.price{
+    color:#dd2476;
+    font-size:28px;
+    font-weight:bold;
+}
+
+/* BUY BUTTON */
+.buy-btn{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    border:none;
+    padding:10px 30px;
+    border-radius:25px;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.buy-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:30px 0;
+    text-align:center;
+    margin-top:50px;
+}
+
+.footer a{
+    color:#ffc107;
+    text-decoration:none;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+<h2><i class="fas fa-utensils"></i> Telangana Ruchulu</h2>
+</div>
+
+<!-- NAVBAR -->
+<nav class="custom-navbar">
+<div class="nav-container">
+
+<a th:href="@{/}" class="nav-item">
+<i class="fas fa-home"></i> Home
+</a>
+
+<a th:href="@{/shop}" class="nav-item">
+<i class="fas fa-shopping-cart"></i> Order
+</a>
+
+<a sec:authorize="isAnonymous()" th:href="@{/admin}" class="nav-item">
+<i class="fas fa-user-shield"></i> Admin
+</a>
+
+</div>
+</nav>
+
+<!-- PRODUCT DETAILS -->
+<div class="container mt-5">
+<div class="product-container">
+
+<div class="row">
+
+<!-- PRODUCT IMAGE -->
+<div class="col-md-5 text-center">
+<img class="product-img"
+ th:src="@{${'/productImages/' + product.imageName}}"
+ alt="">
+</div>
+
+<!-- PRODUCT INFO -->
+<div class="col-md-7">
+
+<h2 th:text="${product.name}"></h2>
+
+<p class="text-muted"
+ th:text="${product.category.name}">
+</p>
+
+<h3 class="price">
+₹ <span th:text="${product.price}"></span>
+</h3>
+
+<h5>
+Weight :
+<span th:text="${product.weight}"></span> grams
+</h5>
+
+<p th:text="${product.description}"></p>
+
+<a th:href="@{/userform}"
+ class="btn buy-btn text-white mt-3">
+<i class="fas fa-shopping-bag"></i> Order Now
+</a>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © 2026 Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

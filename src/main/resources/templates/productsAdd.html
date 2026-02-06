@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Product</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* GLOBAL */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* BACK BUTTON */
+.back-btn{
+    position:absolute;
+    right:20px;
+    top:20px;
+    background:white;
+    color:#dd2476;
+    border-radius:20px;
+    padding:6px 18px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* FORM CARD */
+.form-card{
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    animation:fadeIn 1s;
+}
+
+/* IMAGE PREVIEW */
+.product-img{
+    height:100px;
+    width:100px;
+    border-radius:10px;
+    object-fit:cover;
+    margin-top:15px;
+}
+
+/* BUTTON */
+.submit-btn{
+    background:linear-gradient(to right,#28a745,#20c997);
+    border:none;
+    border-radius:25px;
+    padding:10px 30px;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    margin-top:60px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+
+<a th:href="@{/admin/products}" class="back-btn">
+<i class="fas fa-arrow-left"></i> Back
+</a>
+
+<h2><i class="fas fa-utensils"></i> Telangana Ruchulu</h2>
+
+</div>
+
+<!-- FORM SECTION -->
+<div class="container mt-5 d-flex justify-content-center">
+
+<div class="col-md-6 form-card">
+
+<h4 class="text-center mb-4">Product Form</h4>
+
+<form th:action="@{/admin/products/add}"
+ method="post"
+ th:object="${productDTO}"
+ enctype="multipart/form-data">
+
+<input type="hidden" th:field="*{id}">
+
+<!-- PRODUCT NAME -->
+<div class="form-group">
+<label>Product Name</label>
+<input type="text"
+ class="form-control form-control-lg"
+ th:field="*{name}"
+ placeholder="Enter Product Name"
+ required>
+</div>
+
+<!-- CATEGORY -->
+<div class="form-group">
+<label>Select Category</label>
+<select class="form-control"
+ th:field="*{categoryId}">
+<option th:each="category : ${categories}"
+ th:value="${category.id}"
+ th:text="${category.name}">
+</option>
+</select>
+</div>
+
+<!-- PRICE -->
+<div class="form-group">
+<label>Price</label>
+<input type="number"
+ class="form-control"
+ th:field="*{price}"
+ placeholder="Enter Price"
+ required>
+</div>
+
+<!-- WEIGHT -->
+<div class="form-group">
+<label>Weight (grams)</label>
+<input type="number"
+ class="form-control"
+ th:field="*{weight}"
+ placeholder="Enter Weight"
+ required>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="form-group">
+<label>Description</label>
+<textarea rows="4"
+ class="form-control"
+ th:field="*{description}">
+</textarea>
+</div>
+
+<!-- IMAGE UPLOAD -->
+<div class="form-group">
+<label>Product Image</label>
+
+<div class="custom-file">
+<input type="file"
+ class="custom-file-input"
+ name="productImage"
+ accept="image/jpeg, image/png"
+ id="productImage">
+<label class="custom-file-label">Choose file</label>
+</div>
+
+<img id="imgPreview"
+ class="product-img"
+ th:src="@{${'/productImages/' + productDTO.imageName}}">
+
+<input type="hidden"
+ name="imgName"
+ th:value="${productDTO.imageName}">
+</div>
+
+<div class="text-center">
+<button type="submit"
+ class="btn submit-btn text-white">
+<i class="fas fa-save"></i> Submit
+</button>
+</div>
+
+</form>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © 2026 Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<script>
+function readURL(input){
+ if(input.files && input.files[0]){
+   var reader = new FileReader();
+   reader.onload = function(e){
+     $('#imgPreview').attr('src', e.target.result);
+   }
+   reader.readAsDataURL(input.files[0]);
+ }
+}
+
+$('#productImage').change(function(){
+ readURL(this);
+});
+
+$(".custom-file-input").on("change", function(){
+ var fileName = $(this).val().split("\\").pop();
+ $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+</body>
+</html>

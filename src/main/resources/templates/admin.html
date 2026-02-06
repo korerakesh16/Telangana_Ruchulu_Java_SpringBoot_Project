@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:30px 0;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* DASHBOARD CONTAINER */
+.dashboard-container{
+    margin-top:50px;
+}
+
+/* ADMIN CARDS */
+.admin-card{
+    background:white;
+    border-radius:15px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.1);
+    padding:30px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.admin-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+
+/* ICON */
+.admin-icon{
+    font-size:50px;
+    color:#dd2476;
+    margin-bottom:15px;
+}
+
+/* BUTTON */
+.manage-btn{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    border:none;
+    border-radius:25px;
+    padding:10px 30px;
+    transition:0.3s;
+}
+
+.manage-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+    position:absolute;
+    right:20px;
+    top:20px;
+    background:white;
+    border-radius:20px;
+    padding:6px 18px;
+    font-weight:bold;
+    text-decoration:none;
+    color:#dd2476;
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    margin-top:70px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+
+<a th:href="@{/admin}" class="logout-btn">
+<i class="fas fa-sign-out-alt"></i> Logout
+</a>
+
+<h2><i class="fas fa-user-cog"></i> Telangana Ruchulu</h2>
+<p>Manage Telangana Food Ordering System</p>
+
+</div>
+
+<!-- DASHBOARD OPTIONS -->
+<div class="container dashboard-container">
+
+<div class="row justify-content-center">
+
+<!-- CATEGORY CARD -->
+<div class="col-md-4 mb-4">
+
+<div class="admin-card">
+
+<i class="fas fa-list admin-icon"></i>
+
+<h4>Categories</h4>
+<p>Manage food categories and menu sections</p>
+
+<a th:href="@{/admin/categories}"
+ class="btn manage-btn text-white">
+Manage Categories
+</a>
+
+</div>
+
+</div>
+
+<!-- PRODUCT CARD -->
+<div class="col-md-4 mb-4">
+
+<div class="admin-card">
+
+<i class="fas fa-utensils admin-icon"></i>
+
+<h4>Products</h4>
+<p>Manage food items and product details</p>
+
+<a th:href="@{/admin/products}"
+ class="btn manage-btn text-white">
+Manage Products
+</a>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © 2026 Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shop</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* ===== GLOBAL ===== */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* NAVBAR */
+.custom-navbar{
+    background:rgba(255,255,255,0.95);
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+    padding:15px 0;
+}
+
+.nav-container{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+.nav-item{
+    font-size:18px;
+    font-weight:600;
+    color:#333;
+    text-decoration:none;
+    position:relative;
+    transition:0.3s;
+}
+
+.nav-item::after{
+    content:"";
+    position:absolute;
+    width:0%;
+    height:3px;
+    background:#ff512f;
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.nav-item:hover::after{ width:100%; }
+
+.nav-item:hover{
+    color:#ff512f;
+}
+
+/* CATEGORY */
+.category-box{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-item{
+    transition:0.3s;
+    border-radius:8px;
+}
+
+.category-item:hover{
+    background:#ff512f;
+    color:white;
+}
+
+/* PRODUCT CARD */
+.product-card{
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+    margin-bottom:20px;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.2);
+}
+
+.product-img{
+    height:150px;
+    width:150px;
+    object-fit:cover;
+}
+
+.price{
+    color:#dd2476;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:30px 0;
+    text-align:center;
+    margin-top:50px;
+}
+
+.footer a{
+    color:#ffc107;
+    text-decoration:none;
+}
+
+.footer a:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+<h2><i class="fas fa-utensils"></i> Telangana Ruchulu</h2>
+</div>
+
+<!-- NAVBAR -->
+<nav class="custom-navbar">
+<div class="nav-container">
+
+<a th:href="@{/}" class="nav-item">
+<i class="fas fa-home"></i> Home
+</a>
+
+<a th:href="@{/shop}" class="nav-item">
+<i class="fas fa-shopping-cart"></i> Order
+</a>
+
+<a sec:authorize="isAnonymous()" th:href="@{/admin}" class="nav-item">
+<i class="fas fa-user-shield"></i> Admin
+</a>
+
+</div>
+</nav>
+
+<!-- SHOP CONTENT -->
+<div class="container mt-4">
+<div class="row">
+
+<!-- CATEGORY SIDEBAR -->
+<div class="col-md-3">
+<div class="category-box">
+
+<h4 class="mb-3">Telangana Special Foods</h4>
+
+<ul class="list-group">
+
+<a th:each="category : ${categories}"
+   th:href="@{/shop/category/{id}(id=${category.id})}">
+
+<li class="list-group-item category-item">
+
+<span th:switch="${category.name}">
+
+<span th:case="'Biryani'">Hyderabadi Biryani</span>
+<span th:case="'Rice'">Bagara Rice</span>
+<span th:case="'Curry'">Natukodi Pulusu</span>
+<span th:case="'Snacks'">Sakinalu & Snacks</span>
+<span th:case="'Sweets'">Qubani Ka Meetha</span>
+
+<span th:case="*" th:text="${category.name}"></span>
+
+</span>
+
+</li>
+</a>
+
+</ul>
+
+</div>
+</div>
+
+<!-- PRODUCT SECTION -->
+<div class="col-md-9">
+
+<div class="card product-card"
+     th:each="product : ${products}">
+
+<div class="row no-gutters">
+
+<div class="col-md-4 text-center p-3">
+
+<img class="product-img"
+ th:src="@{${'/productImages/' + product.imageName}}"
+ th:alt="${product.name}">
+
+</div>
+
+<div class="col-md-8">
+
+<div class="card-body">
+
+<h5 th:text="${product.name}"></h5>
+
+<p class="price">
+₹ <span th:text="${product.price}"></span>
+</p>
+
+<p th:text="${product.description}"></p>
+
+<a th:href="@{/shop/viewproduct/{id}(id=${product.id})}"
+ class="btn btn-danger">
+View Product
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

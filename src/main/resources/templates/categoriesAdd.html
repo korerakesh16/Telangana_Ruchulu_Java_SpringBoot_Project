@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Category</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* GLOBAL */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+    position:absolute;
+    right:20px;
+    top:20px;
+    background:white;
+    color:#dd2476;
+    border-radius:20px;
+    padding:6px 18px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* FORM CARD */
+.form-card{
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    animation:fadeIn 1s;
+}
+
+/* SUBMIT BUTTON */
+.submit-btn{
+    background:linear-gradient(to right,#28a745,#20c997);
+    border:none;
+    border-radius:25px;
+    padding:10px 30px;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    margin-top:60px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+
+<a th:href="@{/admin}" class="logout-btn">
+<i class="fas fa-arrow-left"></i> Back
+</a>
+
+<h2><i class="fas fa-plus-circle"></i> Telangana Ruchulu</h2>
+
+</div>
+
+<!-- FORM SECTION -->
+<div class="container mt-5 d-flex justify-content-center">
+
+<div class="col-md-5 form-card">
+
+<h4 class="text-center mb-4">Category Form</h4>
+
+<form th:action="@{/admin/categories/add}"
+ method="post"
+ th:object="${category}">
+
+<input type="hidden" name="id" th:field="*{id}">
+
+<div class="form-group">
+<label>Category Name</label>
+<input type="text"
+ class="form-control form-control-lg"
+ th:field="*{name}"
+ placeholder="Enter Category Name"
+ required>
+</div>
+
+<div class="text-center">
+<button type="submit"
+ class="btn submit-btn text-white">
+<i class="fas fa-save"></i> Submit
+</button>
+</div>
+
+</form>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © 2026 Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

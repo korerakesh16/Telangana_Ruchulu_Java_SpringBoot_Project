@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Categories</title>
+
+<link rel="stylesheet"
+ href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+ href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+<style>
+
+/* GLOBAL */
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* HEADER */
+.header-section{
+    background:linear-gradient(to right,#ff512f,#dd2476);
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+    position:absolute;
+    right:20px;
+    top:20px;
+    background:white;
+    color:#dd2476;
+    border-radius:20px;
+    padding:6px 18px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+/* TABLE CARD */
+.table-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* ADD BUTTON */
+.add-btn{
+    background:linear-gradient(to right,#28a745,#20c997);
+    border:none;
+    border-radius:25px;
+    padding:8px 25px;
+    transition:0.3s;
+}
+
+.add-btn:hover{
+    transform:scale(1.05);
+}
+
+/* ACTION BUTTONS */
+.delete-btn{
+    background:#dc3545;
+    border:none;
+    border-radius:20px;
+}
+
+.update-btn{
+    background:#17a2b8;
+    border:none;
+    border-radius:20px;
+}
+
+/* FOOTER */
+.footer{
+    background:#343a40;
+    color:white;
+    padding:25px 0;
+    text-align:center;
+    margin-top:50px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-section">
+
+<a th:href="@{/admin}" class="logout-btn">
+<i class="fas fa-sign-out-alt"></i> Logout
+</a>
+
+<h2><i class="fas fa-list"></i> Telangana Ruchulu</h2>
+
+</div>
+
+<!-- CATEGORY TABLE -->
+<div class="container mt-5">
+
+<div class="table-card">
+
+<div class="d-flex justify-content-between mb-3">
+
+<h4>Category List</h4>
+
+<a th:href="@{/admin/categories/add}"
+ class="btn add-btn text-white">
+<i class="fas fa-plus"></i> Add Category
+</a>
+
+</div>
+
+<table class="table table-hover">
+
+<thead class="thead-dark">
+<tr>
+<th>S.NO</th>
+<th>Category Name</th>
+<th>Delete</th>
+<th>Update</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr th:each="category, iStat : ${categories}">
+
+<th th:text="${iStat.index + 1}">1</th>
+
+<td th:text="${category.name}">Category</td>
+
+<td>
+<a th:href="@{/admin/categories/delete/{id}(id=${category.id})}"
+ class="btn delete-btn text-white">
+<i class="fas fa-trash"></i>
+</a>
+</td>
+
+<td>
+<a th:href="@{/admin/categories/update/{id}(id=${category.id})}"
+ class="btn update-btn text-white">
+<i class="fas fa-edit"></i>
+</a>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    <h5>Welcome to Telangana Ruchulu</h5>
+    <p>Delivering Taste, Convenience and Quality Service</p>
+
+    <p>
+        <i class="fas fa-envelope"></i> telanganaruchulu@gmail.com |
+        <i class="fas fa-phone"></i> +91 9##########
+    </p>
+
+    <p>
+        © 2026 Telangana Ruchulu. All Rights Reserved.
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
