@@ -35,3 +35,46 @@ The project allows users to browse food items, add them to a cart, place orders,
 
 ## 🗂️ Project Structure
 
+OnlineFoodOrdering
+│
+├── controller
+├── service
+├── repository
+├── entity
+├── dto
+├── config
+├── templates
+├── static
+└── application.properties
+
+
+
+---
+
+## ⚙️ Setup & Installation
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/your-username/Telangana_Ruchulu.git
+
+Import into STS / Eclipse
+
+Open Spring Tool Suite
+
+File → Import → Existing Maven Project
+
+Select the project folder
+
+### 🎯 Future Enhancements
+
+Payment Gateway Integration
+
+Order Tracking
+
+Email & SMS Notifications
+
+Role-based authentication using Spring Security
+
+REST API version for mobile apps
+
+### 📸 Screenshots
