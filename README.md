@@ -35,26 +35,26 @@ The project allows users to browse food items, add them to a cart, place orders,
 
 ## 🗂️ Project Structure
 
--OnlineFoodOrdering
--│
--├── controller
--├── service
--├── repository
--├── entity
--├── dto
--├── config
--├── templates
--├── static
--└── application.properties
+### OnlineFoodOrdering
+│
+├── controller
+├── service
+├── repository
+├── entity
+├── dto
+├── config
+├── templates
+├── static
+└── application.properties
 
 
 
----
+
 
 ## ⚙️ Setup & Installation
 
 ### 1️⃣ Clone the Repository
-```bash
+
 git clone https://github.com/your-username/Telangana_Ruchulu.git
 
 Import into STS / Eclipse
